@@ -1,0 +1,23 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: nginx-ingress
+  annotations:
+    fluxcd.io/automated: "false"
+    # fluxcd.io/tag.chart-image: semver:~4.0
+spec:
+  releaseName: nginx-ingress
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: nginx-ingress
+    version: 1.33.4
+  values:
+    # set this for local k8s-dev cluster
+    controller:
+      kind: DaemonSet
+      service:
+        enabled: false
+      daemonset:
+        useHostPort: true
