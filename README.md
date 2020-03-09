@@ -13,7 +13,14 @@ GitOps for teracy-dev-k8s local cluster
 
 This is for cluster-wide management, so flux requires full cluster permission.
 
-- Fork this repo
+- Fork and clone this repo so that you can continue editing on the config repo, for example:
+
+```bash
+$ cd ~/k8s-dev/workspace
+$ git clone git@github.com:hoatle/teracy-flux-dev-cluster.git
+```
+
+- Add fluxcd helm repository and install flux custom resource definition:
 
 ```bash
 $ helm repo add fluxcd https://charts.fluxcd.io
@@ -58,7 +65,7 @@ $ fluxctl identity --k8s-fwd-ns flux-system
 $ kubectl -n flux-system get secrets flux-git-deploy -o yaml > .secrets/flux-git-deploy.yaml
 ```
 
-- And restore this private key when needed:
+- And restore this private key and flux-system when needed:
 
 ```bash
 $ kubectl create ns flux-system # if any
