@@ -68,6 +68,7 @@ $ kubectl -n flux-system get secrets flux-git-deploy -o yaml > .secrets/flux-git
 - And restore this private key and flux-system when needed:
 
 ```bash
+$ kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml # if any
 $ kubectl create ns flux-system # if any
 $ kubectl delete secrets flux-git-deploy -n flux-system # delete if any
 $ kubectl apply -f .secrets/flux-git-deploy.yaml -n flux-system
