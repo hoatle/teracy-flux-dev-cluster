@@ -1,7 +1,10 @@
 # teracy-flux-dev-cluster
 
+GitOps for teracy-dev-k8s local cluster
+
 ## Prerequisites
 
+- `teracy-dev-k8s` cluster is installed, see: https://github.com/teracyhq-incubator/teracy-dev-k8s
 - `kubectl` is installed and configured to work on the target cluster
 - `helm (v3)` is installed, see: https://helm.sh/docs/intro/install/
 - `fluxctl` is installed, see: https://docs.fluxcd.io/en/1.18.0/references/fluxctl.html#installing-fluxctl
