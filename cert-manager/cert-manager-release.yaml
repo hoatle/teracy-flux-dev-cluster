@@ -9,3 +9,4 @@ spec:
   chart:
     repository: https://charts.jetstack.io
     name: cert-manager
+    version: 0.13.1
