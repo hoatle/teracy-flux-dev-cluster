@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: docker-registry
+  annotations:
+    fluxcd.io/ignore: "true" # set to false to enable this
+  name: docker-registry

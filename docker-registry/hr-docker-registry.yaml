@@ -1,0 +1,35 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: docker-registry
+  namespace: docker-registry
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/ignore: "true" # set to false to enable this
+spec:
+  releaseName: docker-registry
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: docker-registry
+    version: 1.9.2
+  values:
+    # TODO(hoatle): not work yet with local-path provisioner
+    # error: err.code=unknown err.detail="filesystem: mkdir /var/lib/registry/docker: permission denied"
+    # persistence:
+    #   enabled: true
+    #   size: 2Gi
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: ca-cluster-issuer
+      tls:
+      - hosts:
+        - registry.k8s.local
+        secretName: registry-k8s-local-tls
+      hosts:
+      - registry.k8s.local
